@@ -1,0 +1,58 @@
+Để hiểu được và làm được bạn nên đọc rõ khái niệm về đệ quy 
+Vì khái niệm được nhắc lúc học lý thuyết nên mình sẽ không nhắc lại nữa
+Giờ đến phần code
+#include<stdio.h>
+long tong(int n)
+{
+    if (n == 0)
+        return 0;
+    else
+    {
+        return n + tong(n-1);
+    }
+}
+long tich(int n)
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return n * tich(n-1);
+    }
+}
+double luythua(int n,int a)
+{
+     if(a==1)
+     return n;
+     else
+     return luythua(n,a-1)*n;
+}
+int main()
+{
+    int n;
+    printf("Nhap n : ");
+    scanf("%d",&n);
+    printf("\nS = %ld",tong(n));
+    printf("\nP = %ld",tich(n));
+    int a;
+    printf("\nNhap co so a : ");
+    scanf("%d",&a);
+    printf("\nA = %.0lf",luythua(a,n));
+}
+
+
+Giải thích :
+Hàm đệ quy sẽ bắt buộc phải có điều kiện dừng nên ta sẽ đặt điều kiện dừng là điều kiện kết thúc chương trình
+Ví dụ ở hàm tinh tổng điều kiện dừng ở đây là a == 1
+Mọi người đều biết lũy thừa nên là sẽ nhân chính nó và dùng hàm đệ quy để dùng
+Ở đây mình lấy tạm thời số n = 3
+Thì hàm lúc đầu sẽ thực hiện kiểm tra điều kiện dừng nếu sai thì sẽ tiếp tục chương trình và lúc này n = 3 nên n khác 0
+hàm sẽ thực thi trả về 3
+thêm vào đó lại là 1 lời gọi lại hàm nhưng lần này là n giảm đi 1 và n = 2
+Bây giờ hàm lại thực thi 1 lần nữa và cứ lặp lại như vậy đến lúc nào n = 0 thì nó sẽ trả về kết quả cuối cùng
+Chương trình sẽ chạy là 3 + 2 + 1 và trả về kết quả là 6
+
+
+Vì là đệ quy hơi khó giải thích nên có gì không hiểu mọi người có thể liên hệ để mình nói 1 cách chi tiết
