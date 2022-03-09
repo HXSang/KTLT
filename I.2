@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+double capsocong(int n, int a , int r)
+{
+    if(n == 1)
+    {
+        return a;
+    }
+    for(int i = 0 ; i < n ; i++)
+    {
+        return capsocong(n-1,a,r) + r;
+    }
+}
+double capsonhan(int n , int a , int q)
+{
+    if(n == 1)
+    {
+        return a;
+    }
+    for(int i = 0 ; i < n ; i++)
+    {
+        return capsonhan(n-1,a,q) * q;
+    }
+}
+
+int main()
+{
+    int a, r, n, q;
+    printf("\nNhap so hang dau : ");
+    scanf("%d",&a);
+    printf("\nNhap so cong sai : ");
+    scanf("%d",&r);
+    printf("\nNhap so cong boi : ");
+    scanf("%d",&q);
+    printf("\nCap so cong : ");
+    for(int i = 0 ; i < 10 ; i++)
+    {
+        printf("\t%.0lf  ",capsocong(i+1,a,r));
+    }
+    printf("\nCap so nhan : ");
+    for(int i = 0 ; i < 10 ; i++)
+    {
+        printf("\t%.0lf  ",capsonhan(i+1,a,q));
+    }
+    return 0;
+}
+
+// Nếu muốn khử đệ quy thì viết hàm sử dụng vòng lặp for.
+// Vì cái này ở Nhập môn lập trình làm rồi nên mình sẽ không làm lại nữa
+
