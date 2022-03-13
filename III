@@ -58,8 +58,29 @@ void demsotu(char s[])
     }
     printf("%d",dem);
 }
-void tudainhat(char s[])
+void inracactu(char s[])
 {
+    for(int i = 0 ; i < strlen(s) ; i++)
+    {
+        printf("%c",s[i]);
+        if(s[i] == ' ')
+        {
+            printf("\n");
+        }
+    }
+}
+void xoakhoangtrang(char s[])
+{
+    for(int i = 0 ; i < strlen(s) ; i++)
+    {
+        if(s[i] == '\0' || s[i] == ' ')
+        {
+            xoakytu(s,i);
+        }
+    }
+    puts(s);
+}
+void TimTuDaiNhat(char s[]){
     char b[50];
     char c[50];
     int j=0, maxlength=0;
@@ -76,6 +97,25 @@ void tudainhat(char s[])
         }
     }
     puts(c);
+
+}
+void inpos(char s[])
+{
+    int pos,n;
+    printf("\nNhap vi tri pos : ");
+    scanf("%d",&pos);
+    printf("\nNhap so ky tu : ");
+    scanf("%d",&n);
+    printf("\nCac ky tu sau vi tri pos :");
+        for(int j = pos ; j < pos+n ; j++)
+        {
+            printf("%c",s[j+1]);
+        }
+    printf("\nCac ky tu truoc vi tri pos :");
+        for(int j = pos ; j > pos-n ; j--)
+        {
+            printf("%c",s[j-1]);
+        }
 }
 int main()
 {
@@ -90,6 +130,11 @@ int main()
     standard(s);
     printf("\nSo tu : ");
     demsotu(s);
+    printf("\nCac tu\n");
+    inracactu(s);
     printf("\nTu dai nhat : ");
-    tudainhat(s);
+    TimTuDaiNhat(s);
+    printf("\nSau khi xoa tat ca khoang trang : ");
+    xoakhoangtrang(s);
+    inpos(s);
 }
