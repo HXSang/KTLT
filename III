@@ -60,20 +60,19 @@ void demsotu(char s[])
 }
 void tudainhat(char s[])
 {
-    char b[30];
-    char c[30];
-    int j = 0 , maxlength = 0;
-    for(int i = 0 ; i < strlen(s) ; i++)
-    {
-            if(s[i] != 32 && s[i] != '\0'){
-	    b[j++] = s[i];
-	}else{
-            b[j] = '\0';
-            if(strlen(b) > maxlength){
-                strcpy(c, b);
-                maxlength = strlen(b);
+    char b[50];
+    char c[50];
+    int j=0, maxlength=0;
+    for(int i=0;i<=strlen(s);i++){
+        if(s[i] !=32 && s[i] != '\0'){
+            b[j++]=s[i];
+        }else{
+            b[j]='\0';
+            if(strlen(b)>maxlength){
+                strcpy(c,b);
+                maxlength=strlen(b);
             }
-            j = 0;
+            j=0;
         }
     }
     puts(c);
