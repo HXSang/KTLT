@@ -1,1 +1,19 @@
+#include <stdio.h>
+#include <math.h>
 
+float tinha(float y,float x,int n){
+    return y * pow((1+x),n);
+}
+int main(){
+    float y,x;
+    int n;
+    printf("Nhap tien von ");
+    scanf("%f",&y);
+    printf("\nNhap phan tram ");
+    scanf("%f",&x);
+    printf("\nNhap so nam ");
+    scanf("%d",&n);
+    printf("Nam\t Von\n");
+        printf("%d\t%g\n",n,tinha(y,x,n));
+    return 0;
+}
