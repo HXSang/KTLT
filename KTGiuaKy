@@ -1,0 +1,151 @@
+#include <stdio.h>
+#include <conio.h>
+#define MAX 100
+#include <string.h>
+#include <windows.h>
+typedef struct NHA
+{
+    char manha[6];
+    char diachi[30];
+    char soF;
+    float dientichnha;
+};
+NHA DS[MAX];
+
+void nhapnha(NHA &DS)
+{
+    printf("\nNhap ma nha : ");
+    fflush(stdin);
+    gets(DS.manha);
+    printf("\nNhap dia chi : ");
+    fflush(stdin);
+    gets(DS.diachi);
+    printf("\nNhap so nhan khau : ");
+    fflush(stdin);
+    scanf("%c",&DS.soF);
+    printf("\nNhap dien tich : ");
+    scanf("%f",&DS.dientichnha);
+}
+void nhapds(NHA DS[],int &n)
+{
+    printf("\nNhap so nha co trong danh sach : ");
+    scanf("%d",&n);
+    for(int i = 0 ; i  < n ; i++)
+    {
+        nhapnha(DS[i]);
+    }
+}
+void xuatnha(NHA DS)
+{
+    printf("\nMa nha : ");
+    puts(DS.manha);
+    printf("\nDia chi : ");
+    puts(DS.diachi);
+    printf("\nSo nhan khau : %c",DS.soF);
+    printf("\nDien tich : %.2f",DS.dientichnha);
+}
+void xuatds(NHA DS[],int n)
+{
+    for(int i = 0 ; i < n ; i++)
+    {
+        xuatnha(DS[i]);
+    }
+}
+void timkiem(NHA DS[],int n)
+{
+    char nhapma[6];
+    printf("\nNhap ma nha can tin : ");
+    fflush(stdin);
+    gets(nhapma);
+    for(int i = 0 ; i < n ; i++)
+    {
+        if(strcmp(nhapma,DS[i].manha) == 0)
+        {
+            xuatnha(DS[i]);
+        }
+    }
+
+}
+void nhieunhat(NHA DS[],int n)
+{
+    NHA tmp;
+    tmp = DS[0];
+    for(int i = 0; i < n ; i++)
+    {
+        if(tmp.soF < DS[i].soF)
+        {
+            tmp = DS[i];
+        }
+    }
+    for(int i = 0 ; i < n ; i++)
+    {
+        if(tmp.soF == DS[i].soF)
+        {
+            xuatnha(DS[i]);
+        }
+    }
+}
+float dientich(NHA DS)
+{
+    return DS.dientichnha / (DS.soF - '0');
+}
+
+void sapxep(NHA DS[],int n)
+{
+    NHA cp;
+    for(int i = 0 ; i < n ; i++)
+    {
+        for(int j = i + 1 ; j < n ; j++)
+        {
+            if(dientich(DS[i]) > dientich(DS[j]))
+            {
+                cp = DS[i];
+                DS[i] = DS[j];
+                DS[j] = cp;
+            }
+        }
+    }
+    printf("\n\n\t%4s  %-8s  %-15s  %-8s  %-8s  %-8s  ","STT","MaNha", "DiaChi", "So nhan khau","Dien tich","So m2/So F");
+    for(int i = 0 ; i < n ; i++)
+    {
+        printf("\n\n\t%4d  %-8s  %-15s  %-13c  %-8.2f  %-8.2f",i+1,DS[i].manha,DS[i].diachi,DS[i].soF,DS[i].dientichnha,dientich(DS[i]));
+    }
+}
+
+int main()
+{   
+    int n,key;
+    do
+    {
+        printf("\n1.Nhap danh sach thong tin cac nha ");
+        printf("\n2.Xuat danh sach thong tin cac nha ");
+        printf("\n3.Xuat thong tin nha theo ma nha ");
+        printf("\n4.Xuat thong tin nha co so nhan khau F0 hay F1 nhieu nhat ");
+        printf("\n5.Xuat danh sach theo thu tu tang dan cua m2/nguoi ");
+        printf("\n0.Thoat");
+        printf("\nNhap key : ");
+        scanf("%d",&key);
+        switch(key)
+        {
+        case 1:
+            nhapds(DS,n);
+            break;
+        case 2:
+            xuatds(DS,n);
+            break;
+        case 3:
+            timkiem(DS,n);
+            break;
+        case 4:
+            nhieunhat(DS,n);
+            break;
+        case 5:
+            sapxep(DS,n);
+            break;
+        case 0:
+            exit(0);
+            break;
+        }
+    }
+    while(key < 5 || key >= 0);
+}
