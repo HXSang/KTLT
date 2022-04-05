@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <windows.h>
+#define MAX 100
+#include <math.h>
+typedef struct BMI
+{
+    char code[10];
+    char name[20];
+    float cannang;
+    float chieucao;
+    float tiso;
+};
+void input_one(BMI &P)
+{
+    printf("\nNhap ma sinh vien : ");
+    fflush(stdin);
+    gets(P.code);
+    printf("\nNhap ten sinh vien : ");
+    fflush(stdin);
+    gets(P.name);
+    printf("\nNhap can nang : ");
+    scanf("%f",&P.cannang);
+    printf("\nNhap chieu cao : ");
+    scanf("%f",&P.chieucao);
+    P.tiso = P.cannang / pow(P.chieucao,2);
+}
+void input_list(BMI A[],int &n)
+{
+    printf("\nNhap so sinh vien : ");
+    scanf("%d",&n);
+    for(int i = 0 ; i < n ; i++)
+    {
+        input_one(A[i]);
+    }
+}
+void output_list(BMI A[], int n)
+{
+    float a = 0,b = 0,c = 0,d = 0;
+    for(int i = 0 ; i < n ; i++)
+    {
+        if(A[i].tiso < 18.5)
+        {
+            a++;
+        }
+        if(A[i].tiso >= 18.5 && A[i].tiso < 23)
+        {
+            b++;
+        }
+        if(A[i].tiso >= 23 && A[i].tiso < 25)
+        {
+            c++;
+        }
+        if(A[i].tiso > 25)
+        {
+            d++;
+        }
+    }
+    printf("\nTHONG KE IBM CUA CONG TY WeAI");
+    printf("\nSO luong nhan vien thieu can : %0.f chiem ty le %.2f", a , ((a / n) * 1.00) * 100);
+    printf("\nSO luong nhan vien binh thuong : %0.f chiem ty le %.2f", b , ((b / n) * 1.00) * 100);
+    printf("\nSO luong nhan vien thua can : %0.f chiem ty le %.2f", c , (c / n )* 1.00* 100);
+    printf("\nSO luong nhan vien beo phi : %0.f chiem ty le %.2f", d , (d / n)* 1.00* 100);
+}
+
+int main()
+{
+    BMI A[MAX];
+    int n;
+    input_list(A,n);
+    output_list(A,n);
+}
